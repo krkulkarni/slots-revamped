@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Armed Bandit Task</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Use a reliable CDN for Three.js ES Module -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://esm.sh/three@0.155.0"
+            }
+        }
+        </script>
+</head>
+<body>
+    <div id="game-container">
+        <!-- Canvas for the new Three.js visualization -->
+        <canvas id="slot-canvas"></canvas>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="overlay visible">Loading assets...</div>
+
+        <!-- Overlays from original project -->
+        <div id="access-denied-screen" class="overlay">
+            <h1>Access Denied</h1>
+            <p>A valid security key is required to access this task.</p>
+        </div>
+
+        <div id="player-id-screen" class="overlay">
+            <h1>Welcome</h1>
+            <label for="player-id-input">Enter Your Player ID:</label>
+            <input type="text" id="player-id-input" required>
+            <button id="submit-player-id">Submit</button>
+            <p id="player-id-error" class="error-message"></p>
+        </div>
+
+        <div id="cue-selection-screen" class="overlay">
+            <h2>Select Your Most Tempting Cue</h2>
+            <div id="cue-options">
+                <!-- Cue buttons will be added dynamically -->
+            </div>
+            <p id="cue-selection-error" class="error-message"></p>
+        </div>
+
+        <div id="instructions-screen" class="overlay">
+            <h2>Instructions</h2>
+            <div id="instructions-content">
+                <!-- Instructions text here -->
+                <p>Welcome to the Slot Machine Game!</p>
+                <p>You will see two slot machines.</p>
+                <p>Press the <strong>Left Arrow Key</strong> to play the left machine.</p>
+                <p>Press the <strong>Right Arrow Key</strong> to play the right machine.</p>
+                <p>One machine has a high chance (80%) of winning, the other has a low chance (20%).</p>
+                <p>These chances will switch occasionally.</p>
+                <p>The game has different phases. The winning symbol will change:</p>
+                <ul>
+                    <li><strong>Practice:</strong> Get familiar with the game.</li>
+                    <li><strong>Phase 1 & 2:</strong> The winning symbol will be either the cue you selected or a coin.</li>
+                </ul>
+                <p>Watch the screen for prompts to rate your craving and mood using a slider.</p>
+                <p>Try to win as many times as possible!</p>
+            </div>
+            <button id="start-practice-button">Start Practice</button>
+        </div>
+
+        <div id="phase-intro-screen" class="overlay">
+            <h2 id="phase-intro-title">Phase Starting</h2>
+            <p id="phase-intro-text"></p>
+            <button id="continue-phase-button">Continue</button>
+        </div>
+
+        <div id="rating-screen" class="overlay">
+            <h3 id="rating-prompt">Rating Prompt</h3>
+            <label id="rating-label-min">Not at all / Very Negative</label>
+            <input type="range" id="rating-slider" min="0" max="100" value="50">
+            <label id="rating-label-max">Very Strong / Very Positive</label>
+            <span id="rating-value-display">50</span>
+            <button id="submit-rating-button">Submit Rating</button>
+        </div>
+
+        <div id="pause-screen" class="overlay">
+            <h2>Paused</h2>
+            <p>Press 'P' or 'Escape' again to resume.</p>
+            <!-- Optional: Debug jump button -->
+            <button id="debug-jump-button" style="display: none; margin-top: 30px; background-color: #ff8c00;">Go To Trial (Debug)</button>
+        </div>
+
+        <div id="end-screen" class="overlay">
+            <h2>Task Complete</h2>
+            <p>Thank you for participating!</p>
+            <p id="final-score"></p>
+            <button id="redirect-button">Continue</button>
+        </div>
+
+        <!-- HUD -->
+        <div id="hud">
+            <div id="hud-wins">Wins: 0</div>
+            <div id="hud-trial">Trial: 0 / 0</div>
+        </div>
+    </div>
+
+    <!-- Main script remains the same -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

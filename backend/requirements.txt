@@ -1,0 +1,6 @@
+fastapi>=0.95.0,<1.0.0
+uvicorn[standard]>=0.20.0,<1.0.0
+sqlalchemy>=1.4.0,<2.0.0
+pydantic>=1.10.0,<2.0.0
+# Add python-dotenv if you use .env files for configuration
+# python-dotenv>=0.20.0
